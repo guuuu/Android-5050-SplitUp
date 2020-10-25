@@ -10,17 +10,33 @@ if len(devices) == 0:
     quit()
 
 device = devices[0]
+width = int(str(device.shell("wm size").split(":")[1].split("x")[0]).strip()) / 2
+device.shell(f"input touchscreen swipe {width} 100 {width} 1600 2000")
 
-image = device.screencap()
+# image = device.screencap()
 
-with open("screen.png", "wb") as f:
-    f.write(image)
+# with open("screen.png", "wb") as f:
+#     f.write(image)
 
-image = Image.open("screen.png")
-image = numpy.array(image, dtype=numpy.uint8)
+# image = Image.open("screen.png")
+# image = numpy.array(image, dtype=numpy.uint8)
+# pixels = [list(i[:3]) for i in image[1000]]
 
-pixels = [list(i[:3]) for i in image[1000]]
+# white = True
+# pos = []
 
-print(pixels)
+# for i, pixel in enumerate(pixels):
+#     r, g, b = [int(i) for i in pixel]
 
-#device.shell("input touchscreen swipe 500 500 500 1000 2000")
+#     if white and (r+g+b) != 765:
+#        white = not white
+#        pos.append(i)
+#        continue
+
+#     if not white and (r+g+b) == 765:
+#        white = not white
+#        pos.append(i)
+#        continue
+
+# pos = [pos[1], pos[-1]]
+# pos = pos[1] - pos[0] + 20
